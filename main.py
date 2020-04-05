@@ -10,5 +10,5 @@ def hello_name(name='World'):
 def get_message(name):
     return 'Hello, {}!'.format(escape(name))
 
-def function_for_sam():
+def function_for_sam2():
     print("hey Sam :)") 
