@@ -16,6 +16,11 @@ def greet_rich(name='Rich :)'):
 def get_message(name):
     return 'Hello, {}!'.format(escape(name))
 
-def function_for_sam2():
+def function_for_sam():
     print("hey Sam :)")
     print('Hey Rosa')
+
+def function_for_sam_2():
+    print("hey Sam again :)")
+    print("hey Sam again again :)") 
+
