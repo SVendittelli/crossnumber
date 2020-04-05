@@ -1,0 +1,50 @@
+{
+    "metadata": {
+        "width": 3,
+        "height": 2
+    },
+    "clues": [
+        {
+            "id": "uuid123",
+            "direction": "across",
+            "text": "Is an odd prime number",
+            "properties": [
+                "prime",
+                "odd"
+            ],
+            "cells": [
+                {
+                    "row": 0,
+                    "column": 0
+                },
+                {
+                    "row": 0,
+                    "column": 1
+                },
+                {
+                    "row": 0,
+                    "column": 2
+                }
+            ]
+        },
+        {
+            "id": "uuid345",
+            "direction": "down",
+            "text": "Is an even square number",
+            "properties": [
+                "square",
+                "even"
+            ],
+            "cells": [
+                {
+                    "row": 0,
+                    "column": 0
+                },
+                {
+                    "row": 1,
+                    "column": 0
+                }
+            ]
+        }
+    ]
+}
