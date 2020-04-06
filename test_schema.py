@@ -25,7 +25,7 @@ def test_grid_2_2():
         }
 # Rikki 6/4/20
 # 1 2 1
-# 6 1 9
+# 6 1 9 
 def test_grid_2_3():
     return {
     "metadata": {"width": 3,"height": 2},
