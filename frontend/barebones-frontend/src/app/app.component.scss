@@ -59,6 +59,63 @@ p {
   align-items: center;
 }
 
+.inherit-layout {
+  display: inherit;
+  flex-direction: inherit;
+  align-items: inherit;
+}
+
+.collapsible-panel {
+  position: relative;
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid #eee;
+  background-color: #fafafa;
+
+  .collapsible-panel-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .collapsible-panel-button {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    height: 44px;
+    width: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    .amp9776-container {
+      padding: 0em 0.2655em 0.0715em;
+    }
+  }
+
+  .collapsible-panel-content {
+    overflow: hidden;
+    padding: 32px 0 16px;
+  }
+}
+
+.collapsible-panel:not(.collapsed) {
+  .collapsible-panel-header {
+      display: none;
+      visibility: hidden;
+  }
+}
+
+.collapsible-panel.collapsed {
+  .collapsible-panel-content {
+    display: none;
+    visibility: hidden;
+  }
+}
+
 svg.material-icons {
   height: 24px;
   width: auto;
@@ -81,8 +138,8 @@ svg.material-icons:not(:last-child) {
 
 .card {
   border-radius: 4px;
-  border: 1px solid #eee;
-  background-color: #fafafa;
+  border: 1px solid #dbdbdb;
+  background-color: #f4f4f4;
   height: 40px;
   width: 200px;
   margin: 0 8px 16px;
@@ -143,7 +200,27 @@ svg#rocket-smoke {
   position: absolute;
   top: 10px;
   right: 180px;
+}
+
+svg#clouds {
+  position: absolute;
+  width: 1920px;
+}
+
+.absolute-svg-container {
+  position: relative;
+}
+
+// 1-indexed because they are being
+// rendered over the default elements
+.layer1 {
   z-index: -10;
+}
+.layer2 {
+  z-index: 0;
+}
+.layer3 {
+  z-index: 10;
 }
 
 a,
@@ -248,14 +325,6 @@ footer a {
   margin-right: 4px;
 }
 
-svg#clouds {
-  position: fixed;
-  bottom: -160px;
-  left: -230px;
-  z-index: -10;
-  width: 1920px;
-}
-
 
 /* Responsive Styles */
 @media screen and (max-width: 767px) {
@@ -281,14 +350,8 @@ svg#clouds {
 }
 
 @media screen and (max-width: 575px) {
-  svg#rocket-smoke {
+  svg#rocket-smoke, svg#clouds {
     display: none;
     visibility: hidden;
   }
-}
-
-.content-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }

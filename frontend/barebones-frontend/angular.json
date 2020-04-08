@@ -28,7 +28,6 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -93,7 +92,6 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -129,6 +127,6 @@
   },
   "defaultProject": "barebones-frontend",
   "cli": {
-    "analytics": "bc695c7d-c637-4ecb-b960-fe15eaa48fb6"
+    "analytics": "3e02fdad-5cb6-4828-b690-67e13f21d5bf"
   }
 }
