@@ -77,4 +77,4 @@ def Simulation(lower, upper, rule):
     print (Possible_solutions)
     print (Possible_solutions/(upper-lower))
 
-#Simulation(10,99, "palindrome")
+#Simulation(10,99, "palindrome") 
