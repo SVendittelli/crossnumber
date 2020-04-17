@@ -25,6 +25,11 @@ export class ProductDetailsComponent implements OnInit {
 
   addToCart(product) {
     this.cartService.addToCart(product);
+
+    // TODO: Sam, please get rid of the nasty alert and implement a checkout button
+    // item count display instead. Perhaps it could flash to alert the user? But not
+    // too bright - make it subtle. But significant. But subtle
+
     window.alert('Your product has been added to the cart!');
   }
 
