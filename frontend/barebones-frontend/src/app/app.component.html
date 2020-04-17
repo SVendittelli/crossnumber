@@ -1,25 +1,5 @@
-<app-top-bar [title]="title"></app-top-bar>
+<app-top-bar></app-top-bar>
 
-<div class="content" role="main">
-
-  <p>Collect some user parameters here</p>
-
-  <p>&nbsp;</p>
-
-  <p>Render the crossnum here</p>
-
-  <p>&nbsp;</p>
-
-  <app-collapsible-panel [startsCollapsed]="true">
-    <div collapsible-panel-header>
-      <h2>Default Content</h2>
-    </div>
-    <div collapsible-panel-body>
-      <app-default-content [title]="title"></app-default-content>
-    </div>
-  </app-collapsible-panel>
+<div class="container">
+  <router-outlet></router-outlet>
 </div>
-
-
-
-<router-outlet></router-outlet>
