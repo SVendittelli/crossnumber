@@ -1,0 +1,54 @@
+:host {
+  width: 100%
+}
+
+.collapsible-panel {
+  position: relative;
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid #eee;
+  background-color: #fafafa;
+
+  .collapsible-panel-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .collapsible-panel-button {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    height: 44px;
+    width: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    .amp9776-container {
+      padding: 0em 0.2655em 0.0715em;
+    }
+  }
+
+  .collapsible-panel-content {
+    overflow: hidden;
+    padding: 32px 0 16px;
+  }
+}
+
+.collapsible-panel:not(.collapsed) {
+  .collapsible-panel-header {
+      display: none;
+      visibility: hidden;
+  }
+}
+
+.collapsible-panel.collapsed {
+  .collapsible-panel-content {
+    display: none;
+    visibility: hidden;
+  }
+}
