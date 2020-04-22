@@ -71,7 +71,7 @@ export class HeroService {
     return tap((t: T) => this.sendMessage((typeof(m) === 'string') ? m : m(t)));
   }
 
-  private getHandler<T>(callerName, defaultValue): ((error: any) => Observable<T>) {
+  private getHandler<T>(callerName: string, defaultValue: T): ((error: any) => Observable<T>) {
     return (error: any): Observable<T> => {
       console.error(error);
       this.sendMessage(`${callerName} failed: ${error.message}`);
@@ -79,13 +79,13 @@ export class HeroService {
     };
   }
 
-  private heroesHandler(callerName: string): ((error: any) => Observable<Hero[]>) {
-    return this.getHandler<Hero[]>(callerName, this.defaultHeroes);
+  private heroesHandler(callerName: string, defaultValue: Hero[] = this.defaultHeroes): ((error: any) => Observable<Hero[]>) {
+    return this.getHandler<Hero[]>(callerName, defaultValue);
   }
-  private heroHandler(callerName: string): ((error: any) => Observable<Hero>) {
-    return this.getHandler<Hero>(callerName, this.defaultHero);
+  private heroHandler(callerName: string, defaultValue: Hero = this.defaultHero): ((error: any) => Observable<Hero>) {
+    return this.getHandler<Hero>(callerName, defaultValue);
   }
-  private anyHandler(callerName: string): ((error: any) => Observable<any>) {
-    return this.getHandler<any>(callerName, this.defaultAny);
+  private anyHandler(callerName: string, defaultValue: any = this.defaultAny): ((error: any) => Observable<any>) {
+    return this.getHandler<any>(callerName, defaultValue);
   }
 }
