@@ -63,6 +63,14 @@ export class HeroService {
     );
   }
 
+  public searchHeroes(searchTerm: string): Observable<Hero[]> {
+    if (!searchTerm.trim()) { return of([]); }
+    return this.requestFactory.getHeroes(searchTerm).pipe(
+      this.messageTap(heroes => `${heroes.length ? `found ${heroes.length} heroes matching` : 'no heroes match'} "${searchTerm}"`),
+      catchError(this.heroesHandler(`searchHeroes(${searchTerm})`))
+    );
+  }
+
   private sendMessage(message: string): void {
     this.messageService.add(`HeroService: ${message}`);
   }

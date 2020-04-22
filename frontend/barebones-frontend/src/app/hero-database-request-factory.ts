@@ -8,8 +8,8 @@ export class HeroDatabaseRequestFactory {
   constructor(private httpRequests: HttpJsonRequestFactory) { }
 
   // GET Requests
-  public getHeroes(): Observable<Hero[]> {
-    return this.httpRequests.get<Hero[]>(this.url);
+  public getHeroes(searchTerm?: string): Observable<Hero[]> {
+    return this.httpRequests.get<Hero[]>(this.url + (searchTerm ? `/?name=${searchTerm}` : ''));
   }
   public getHero(id: number): Observable<Hero> {
     return this.httpRequests.get<Hero>(`${this.url}/${id}`);
