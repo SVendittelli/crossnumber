@@ -1,70 +1,67 @@
+import { HttpJsonRequestFactory } from './http-json-request-factory';
+import { HeroDatabaseRequestFactory } from './hero-database-request-factory';
 import { MessageService } from './message.service';
 import { Hero } from './hero';
 import { Injectable } from '@angular/core';
-import { Observable, MonoTypeOperatorFunction } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { map, tap } from 'rxjs/operators';
-import { GetHeroesRequest, GetHeroRequest, UpdateHeroRequest, AddHeroRequest, DeleteHeroRequest } from './hero-service-request';
-
+import { Observable, MonoTypeOperatorFunction, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { map, tap, catchError } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class HeroService {
-  private heroesUrl = 'api/heroes';
+  private requestFactory = new HeroDatabaseRequestFactory(new HttpJsonRequestFactory(this.http));
 
-  private httpOptions: { headers: HttpHeaders } = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  };
+  private defaultHeroes = [];
+  private defaultHero = { id: 0, name: '' };
+  private defaultAny = null;
 
   constructor(
     private messageService: MessageService,
     public http: HttpClient
   ) { }
 
-
-
-  ////////////////////////////////////////////////////////////////////
-  /////////////  \/  Public request methods section  \/  /////////////
-  ////////////////////////////////////////////////////////////////////
-
-  public getHeroes(callback: (_: Hero[]) => void): void {
-    this.makeGetHeroesRequest().pipe(
-      this.messageTap(`fetched heroes`)
-    ).subscribe(callback);
+  public getHeroes(): Observable<Hero[]> {
+    return this.requestFactory.getHeroes().pipe(
+      this.messageTap(`fetched heroes`),
+      catchError(this.heroesHandler('getHeroes'))
+    );
   }
 
-  public getTopHeroes(count: number, callback: (_: Hero[]) => void): void {
-    this.makeGetHeroesRequest().pipe(
+  public getTopHeroes(count: number): Observable<Hero[]> {
+    return this.requestFactory.getHeroes().pipe(
       map(hs => hs.slice(0, count)),
-      this.messageTap(heroes => `fetched top ${heroes.length} heroes`)
-    ).subscribe(callback);
+      this.messageTap(heroes => `fetched top ${heroes.length} heroes`),
+      catchError(this.heroesHandler(`getTopHeroes(${count})`))
+    );
   }
 
-  public getHero(id: number, callback: (_: Hero) => void): void {
-    this.makeGetHeroRequest(id).pipe(
-      this.messageTap(hero => `fetched hero #${hero.id}: ${hero.name}`)
-    ).subscribe(callback);
+  public getHero(id: number): Observable<Hero> {
+    return this.requestFactory.getHero(id).pipe(
+      this.messageTap(hero => `fetched hero #${hero.id}: ${hero.name}`),
+      catchError(this.heroHandler(`getHero(${id})`))
+    );
   }
 
-  public updateHero(heroToUpdate: Hero, callback: (_: any) => void): void {
-    this.makeUpdateHeroRequest(heroToUpdate).pipe(
-      this.messageTap(() => `updated hero id=${heroToUpdate.id}: ${heroToUpdate.name}`)
-    ).subscribe(callback);
+  public updateHero(heroToUpdate: Hero): Observable<any> {
+    return this.requestFactory.updateHero(heroToUpdate).pipe(
+      this.messageTap(() => `updated hero id=${heroToUpdate.id}: ${heroToUpdate.name}`),
+      catchError(this.anyHandler(`updateHero(${heroToUpdate})`))
+    );
   }
 
-  public addHero(heroName: string, callback: (_: Hero) => void): void {
-    this.makeAddHeroRequest(heroName).pipe(
-      this.messageTap(hero => `added hero #${hero.id}: ${hero.name}`)
-    ).subscribe(callback);
+  public addHero(heroToAdd: Hero): Observable<Hero> {
+    return this.requestFactory.addHero(heroToAdd).pipe(
+      this.messageTap(hero => `added hero #${hero.id}: ${hero.name}`),
+      catchError(this.heroHandler(`addHero(${heroToAdd})`))
+    );
   }
 
-  public deleteHero(heroToDelete: Hero, callback?: (_: any) => void): void {
-    this.makeDeleteHeroRequest(heroToDelete).pipe(
-      this.messageTap(_ => `deleted hero #${heroToDelete.id}: ${heroToDelete.name}`)
-    ).subscribe(callback);
+  public deleteHero(heroToDelete: Hero): Observable<any> {
+    return this.requestFactory.deleteHero(heroToDelete).pipe(
+      this.messageTap(() => `deleted hero #${heroToDelete.id}: ${heroToDelete.name}`),
+      catchError(this.anyHandler(`deleteHero(${heroToDelete})`))
+    );
   }
-
-  ////////////////////////////////////////////////////////////////////
-
 
   private sendMessage(message: string): void {
     this.messageService.add(`HeroService: ${message}`);
@@ -74,46 +71,21 @@ export class HeroService {
     return tap((t: T) => this.sendMessage((typeof(m) === 'string') ? m : m(t)));
   }
 
-
-
-  ////////////////////////////////////////////////////////////////////
-  /////////////  \/  HTTP requests creation section  \/  /////////////
-  ////////////////////////////////////////////////////////////////////
-
-  // GET Requests
-  private get<T>(url: string = this.heroesUrl): Observable<T> {
-    return this.http.get<T>(url);
-  }
-  private makeGetHeroesRequest(): GetHeroesRequest {
-    return new GetHeroesRequest(this.get<Hero[]>(), this.sendMessage);
-  }
-  private makeGetHeroRequest(id: number): GetHeroRequest {
-    return new GetHeroRequest(this.get<Hero>(`${this.heroesUrl}/${id}`), this.sendMessage);
+  private getHandler<T>(callerName, defaultValue): ((error: any) => Observable<T>) {
+    return (error: any): Observable<T> => {
+      console.error(error);
+      this.sendMessage(`${callerName} failed: ${error.message}`);
+      return of(defaultValue);
+    };
   }
 
-  // PUT Requests
-  private put<T>(body: any, url: string = this.heroesUrl): Observable<T> {
-    return this.http.put<T>(url, body, this.httpOptions);
+  private heroesHandler(callerName: string): ((error: any) => Observable<Hero[]>) {
+    return this.getHandler<Hero[]>(callerName, this.defaultHeroes);
   }
-  private makeUpdateHeroRequest(hero: Hero): UpdateHeroRequest {
-    return new UpdateHeroRequest( this.put(hero), this.sendMessage);
+  private heroHandler(callerName: string): ((error: any) => Observable<Hero>) {
+    return this.getHandler<Hero>(callerName, this.defaultHero);
   }
-
-  // POST Requests
-  private post<T>(body: any, url: string = this.heroesUrl): Observable<T> {
-    return this.http.post<T>(url, body, this.httpOptions);
+  private anyHandler(callerName: string): ((error: any) => Observable<any>) {
+    return this.getHandler<any>(callerName, this.defaultAny);
   }
-  private makeAddHeroRequest(heroName: string): AddHeroRequest {
-    return new AddHeroRequest(this.post<Hero>({ name: heroName } as Hero), this.sendMessage);
-  }
-
-  // DELETE Requests
-  private delete<T>(url: string): Observable<any> {
-    return this.http.delete<T>(url, this.httpOptions);
-  }
-  private makeDeleteHeroRequest(hero: Hero): DeleteHeroRequest {
-    return new DeleteHeroRequest(this.delete(`${this.heroesUrl}/${hero.id}`), this.sendMessage);
-  }
-
-  ////////////////////////////////////////////////////////////////////
 }
