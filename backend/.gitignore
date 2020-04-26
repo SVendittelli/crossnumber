@@ -11,7 +11,7 @@
 
 ### Flask ###
 */instance/*
-*/!instance/.gitignore
+# !instance/.gitignore
 */.webassets-cache
 
 ### Flask.Python Stack ###
