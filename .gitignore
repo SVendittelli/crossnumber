@@ -1,0 +1,278 @@
+# Top level
+__pycache__/*
+
+# Global
+*/*/.vscode/*
+
+
+
+
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# # # # # # # # # # # # #     Backend Python Services     # # # # # # # # # # # # #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+# Created by https://www.gitignore.io/api/venv,flask,python,visualstudiocode
+# Edit at https://www.gitignore.io/?templates=venv,flask,python,visualstudiocode
+
+# Commented:
+#     '!.vscode/settings.json'
+#     '!.vscode/tasks.json'
+#     '!.vscode/launch.json'
+#     '!.vscode/extensions.json'
+
+# Modified with `^([^#\n\r].*)$` => `backend/*/$1` at https://regexr.com/
+
+### Flask ###
+backend/*/instance/*
+backend/*/!instance/.gitignore
+backend/*/.webassets-cache
+
+### Flask.Python Stack ###
+# Byte-compiled / optimized / DLL files
+backend/*/__pycache__/
+backend/*/*.py[cod]
+backend/*/*$py.class
+
+# C extensions
+backend/*/*.so
+
+# Distribution / packaging
+backend/*/.Python
+backend/*/build/
+backend/*/develop-eggs/
+backend/*/dist/
+backend/*/downloads/
+backend/*/eggs/
+backend/*/.eggs/
+backend/*/lib/
+backend/*/lib64/
+backend/*/parts/
+backend/*/sdist/
+backend/*/var/
+backend/*/wheels/
+backend/*/pip-wheel-metadata/
+backend/*/share/python-wheels/
+backend/*/*.egg-info/
+backend/*/.installed.cfg
+backend/*/*.egg
+backend/*/MANIFEST
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+backend/*/*.manifest
+backend/*/*.spec
+
+# Installer logs
+backend/*/pip-log.txt
+backend/*/pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+backend/*/htmlcov/
+backend/*/.tox/
+backend/*/.nox/
+backend/*/.coverage
+backend/*/.coverage.*
+backend/*/.cache
+backend/*/nosetests.xml
+backend/*/coverage.xml
+backend/*/*.cover
+backend/*/.hypothesis/
+backend/*/.pytest_cache/
+
+# Translations
+backend/*/*.mo
+backend/*/*.pot
+
+# Scrapy stuff:
+backend/*/.scrapy
+
+# Sphinx documentation
+backend/*/docs/_build/
+
+# PyBuilder
+backend/*/target/
+
+# pyenv
+backend/*/.python-version
+
+# pipenv
+#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
+#   However, in case of collaboration, if having platform-specific dependencies or dependencies
+#   having no cross-platform support, pipenv may install dependencies that don't work, or not
+#   install all needed dependencies.
+#Pipfile.lock
+
+# celery beat schedule file
+backend/*/celerybeat-schedule
+
+# SageMath parsed files
+backend/*/*.sage.py
+
+# Spyder project settings
+backend/*/.spyderproject
+backend/*/.spyproject
+
+# Rope project settings
+backend/*/.ropeproject
+
+# Mr Developer
+backend/*/.mr.developer.cfg
+backend/*/.project
+backend/*/.pydevproject
+
+# mkdocs documentation
+backend/*//site
+
+# mypy
+backend/*/.mypy_cache/
+backend/*/.dmypy.json
+backend/*/dmypy.json
+
+# Pyre type checker
+backend/*/.pyre/
+
+### Python ###
+# Byte-compiled / optimized / DLL files
+
+# C extensions
+
+# Distribution / packaging
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+
+# Installer logs
+
+# Unit test / coverage reports
+
+# Translations
+
+# Scrapy stuff:
+
+# Sphinx documentation
+
+# PyBuilder
+
+# pyenv
+
+# pipenv
+#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
+#   However, in case of collaboration, if having platform-specific dependencies or dependencies
+#   having no cross-platform support, pipenv may install dependencies that don't work, or not
+#   install all needed dependencies.
+
+# celery beat schedule file
+
+# SageMath parsed files
+
+# Spyder project settings
+
+# Rope project settings
+
+# Mr Developer
+
+# mkdocs documentation
+
+# mypy
+
+# Pyre type checker
+
+### venv ###
+# Virtualenv
+# http://iamzed.com/2009/05/07/a-primer-on-virtualenv/
+backend/*/pyvenv.cfg
+backend/*/.env
+backend/*/.venv
+backend/*/env/
+backend/*/venv/
+backend/*/ENV/
+backend/*/env.bak/
+backend/*/venv.bak/
+backend/*/pip-selfcheck.json
+
+### VisualStudioCode ###
+backend/*/.vscode/*
+#backend/*/!.vscode/settings.json
+#backend/*/!.vscode/tasks.json
+#backend/*/!.vscode/launch.json
+#backend/*/!.vscode/extensions.json
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+backend/*/.history
+
+# End of https://www.gitignore.io/api/venv,flask,python,visualstudiocode
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# # # # # # # # # # #     End of Backend Python Services    # # # # # # # # # # # #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+
+
+
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# # # # # # # # # # # # # #    Frontend Angular Apps    # # # # # # # # # # # # # #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+# Angular generated .gitignore
+
+# Modified with 
+#     `^([^#\n\r/].*)$` => `/$1`
+#     then
+#     `^([^#\n\r].*)$` => `frontend/*$1`
+# at https://regexr.com/
+
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+frontend/*/dist
+frontend/*/tmp
+frontend/*/out-tsc
+# Only exists if Bazel was run
+frontend/*/bazel-out
+
+# dependencies
+frontend/*/node_modules
+
+# profiling files
+frontend/*/chrome-profiler-events*.json
+frontend/*/speed-measure-plugin*.json
+
+# IDEs and editors
+frontend/*/.idea
+frontend/*/.project
+frontend/*/.classpath
+frontend/*/.c9/
+frontend/*/*.launch
+frontend/*/.settings/
+frontend/*/*.sublime-workspace
+
+# IDE - VSCode
+frontend/*/.vscode/*
+#!.vscode/settings.json
+#!.vscode/tasks.json
+#!.vscode/launch.json
+#!.vscode/extensions.json
+frontend/*/.history/*
+
+# misc
+frontend/*/.sass-cache
+frontend/*/connect.lock
+frontend/*/coverage
+frontend/*/libpeerconnection.log
+frontend/*/npm-debug.log
+frontend/*/yarn-error.log
+frontend/*/testem.log
+frontend/*/typings
+
+# System Files
+frontend/*/.DS_Store
+frontend/*/Thumbs.db
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# # # # # # # # # # #     End of Frontend Angular Apps    # # # # # # # # # # # # #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
