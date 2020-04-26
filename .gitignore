@@ -4,6 +4,7 @@ __pycache__/*
 
 # Visual Studio Code
 **/.vscode/*
+**/.history/*
 
 # System Files
 **/.DS_Store
