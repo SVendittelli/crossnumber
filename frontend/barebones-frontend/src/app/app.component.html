@@ -10,6 +10,11 @@
 
   <p>&nbsp;</p>
 
+  <p>Schema Server connection <span *ngIf="welcomeMessage">successful!</span><span *ngIf="!welcomeMessage">failed</span></p>
+  <p>Schema Server says: {{ welcomeMessage }}</p>
+
+  <p>&nbsp;</p>
+
   <app-collapsible-panel [startsCollapsed]="true">
     <div collapsible-panel-header>
       <h2>Default Content</h2>

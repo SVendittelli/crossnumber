@@ -40,4 +40,5 @@ Install the requirements:
 
 To start the application in debug mode:
 In terminal
+    .\venv\Scripts\activate
     flask run
