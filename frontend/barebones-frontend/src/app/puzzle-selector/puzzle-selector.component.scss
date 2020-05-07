@@ -1,0 +1,10 @@
+@use 'src/styles.scss';
+
+:host {
+  @extend %flex-container;
+  width: 100%;
+}
+
+app-puzzle-grid {
+  margin: 10px 0px 20px;
+}

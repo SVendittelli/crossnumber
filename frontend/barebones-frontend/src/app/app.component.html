@@ -1,19 +1,7 @@
 <app-top-bar [title]="title"></app-top-bar>
 
 <div class="content" role="main">
-
-  <p>Collect some user parameters here</p>
-
-  <p>&nbsp;</p>
-
-  <p>Render the crossnum here</p>
-
-  <p>&nbsp;</p>
-
-  <p>Schema Server connection <span *ngIf="welcomeMessage">successful!</span><span *ngIf="!welcomeMessage">failed</span></p>
-  <p>Schema Server says: {{ welcomeMessage }}</p>
-
-  <p>&nbsp;</p>
+  <app-puzzle-selector></app-puzzle-selector>
 
   <app-collapsible-panel [startsCollapsed]="true">
     <div collapsible-panel-header>

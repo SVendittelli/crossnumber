@@ -1,0 +1,18 @@
+<div class="inherit-layout puzzle-container" *ngIf="puzzle">
+  <svg [attr.width]="2 + 50 * puzzle.metadata.width" [attr.height]="2 + 50 * puzzle.metadata.height">
+    <rect class="grid-background" [attr.width]="2 + 50 * puzzle.metadata.width" [attr.height]="2 + 50 * puzzle.metadata.height"></rect>
+    <rect class="grid-cell" *ngFor="let cell of cellsInUse" [attr.x]="2 + cell.column * 50" [attr.y]="2 + cell.row * 50" width="48" height="48"></rect>
+    <text *ngFor="let num of clueNumbers" [attr.x]="3 + num.pos.column * 50" [attr.y]="13 + num.pos.row * 50">{{ num.value }}</text>
+  </svg>
+
+  <div class="inherit-layout clue-container">
+    <div class="inherit-layout clue-section" *ngFor="let direction of ['across', 'down']">
+      <h4>{{ direction | titlecase }}:</h4>
+      <div>
+        <div *ngFor="let clue of clues[direction]">
+          {{ clue.number }}: {{ clue.text }} ({{ clue.cells.length }})
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
